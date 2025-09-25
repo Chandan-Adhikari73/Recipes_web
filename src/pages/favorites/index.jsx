@@ -13,11 +13,11 @@ function Favorites() {
         ))
       ) : (
         <div className="flex flex-col items-center justify-center gap-6 text-center">
-          <p className="lg:text-4xl text-2xl font-extrabold bg-gradient-to-r from-cyan-400 to-blue-600 bg-clip-text text-transparent">
+          <p className="lg:text-5xl text-3xl font-extrabold bg-gradient-to-r from-cyan-400 via-blue-500 to-purple-500 bg-clip-text text-transparent animate-text">
             Nothing is added in favorites
           </p>
-          <p className="text-gray-500 text-sm md:text-base">
-            Search and add some delicious recipes to your favorites list.
+          <p className="text-gray-400 text-sm md:text-base max-w-md">
+            Search and add some delicious recipes to your favorites list. All your favorite recipes will appear here with full details.
           </p>
         </div>
       )}

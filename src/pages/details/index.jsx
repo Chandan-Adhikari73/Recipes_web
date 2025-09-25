@@ -24,13 +24,21 @@ function RecipeDetails() {
     getRecipeDetails();
   }, [id, setRecipeDetailsData]);
 
+  const imageUrl = recipeDetailsData?.recipe?.image_url
+    ? recipeDetailsData.recipe.image_url.replace("http://", "https://")
+    : "/images/default.jpg"; 
+
+  const isFavorite = favoritesList?.some(
+    (item) => item.id === recipeDetailsData?.recipe?.id
+  );
+
   return (
     <div className="container mx-auto py-16 px-6 grid grid-cols-1 lg:grid-cols-2 gap-12">
       <div className="row-start-2 lg:row-start-auto">
         <div className="h-96 overflow-hidden rounded-2xl shadow-2xl relative group">
           <img
-            src={recipeDetailsData?.recipe?.image_url}
-            alt="recipe"
+            src={imageUrl}
+            alt={recipeDetailsData?.recipe?.title || "recipe"}
             className="w-full h-full object-cover block rounded-2xl group-hover:scale-110 transition-transform duration-500"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-black/60 to-transparent opacity-0 group-hover:opacity-100 transition-opacity"></div>
@@ -39,21 +47,21 @@ function RecipeDetails() {
 
       <div className="flex flex-col gap-6">
         <span className="text-sm text-cyan-400 font-semibold uppercase tracking-wider">
-          {recipeDetailsData?.recipe?.publisher}
+          {recipeDetailsData?.recipe?.publisher || "Unknown Publisher"}
         </span>
         <h3 className="font-bold text-3xl text-white drop-shadow-lg">
-          {recipeDetailsData?.recipe?.title}
+          {recipeDetailsData?.recipe?.title || "No Title"}
         </h3>
 
         <button
           onClick={() => handleAddToFavorite(recipeDetailsData?.recipe)}
-          className="px-6 py-3 rounded-xl text-sm uppercase font-semibold tracking-wider shadow-lg bg-gradient-to-r from-cyan-500 to-blue-600 text-white hover:from-cyan-400 hover:to-blue-500 transition-colors w-fit"
+          className={`px-6 py-3 rounded-xl text-sm uppercase font-semibold tracking-wider shadow-lg bg-gradient-to-r ${
+            isFavorite
+              ? "from-red-500 to-pink-500 hover:from-red-400 hover:to-pink-400"
+              : "from-cyan-500 to-blue-600 hover:from-cyan-400 hover:to-blue-500"
+          } text-white transition-colors w-fit`}
         >
-          {favoritesList?.some(
-            (item) => item.id === recipeDetailsData?.recipe?.id
-          )
-            ? "Remove from Favorites"
-            : "Add to Favorites"}
+          {isFavorite ? "Remove from Favorites" : "Add to Favorites"}
         </button>
 
         <div>

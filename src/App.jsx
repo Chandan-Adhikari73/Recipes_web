@@ -7,9 +7,9 @@ import Details from "./pages/details";
 
 function App() {
   return (
-    <div className="min-h-screen bg-gradient-to-br from-gray-900 via-gray-800 to-gray-900 text-white font-sans">
+    <div className="min-h-screen bg-gray-100 text-gray-900 font-inter">
       <Navbar />
-      <main className="pt-28 px-6">
+      <main className="pt-24 px-4 md:px-10 max-w-6xl mx-auto">
         <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/favorites" element={<Favorites />} />

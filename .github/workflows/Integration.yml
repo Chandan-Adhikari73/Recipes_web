@@ -29,4 +29,4 @@ jobs:
     - name: "Installing dependencies"
       run: npm i
     - name: "Run Build Command"
-      run: npm run dev
+      run: npm run build 
